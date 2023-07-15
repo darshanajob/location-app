@@ -12,6 +12,7 @@ class customers extends Model
     protected $fillable = [
         'phone_number',
         'address',
+        'user_id'
         //'profile_photo',
     ];
     public function user()
