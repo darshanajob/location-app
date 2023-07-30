@@ -62,4 +62,38 @@ class CustomersController extends Controller
     {
         //
     }
+    public function getAllCustomers()
+{
+    try {
+        // Retrieve all customers' data from the database
+        $customers = Customer::all();
+
+        return response()->json([
+            'customers' => $customers,
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+public function getCustomer($id)
+{
+    try {
+        // Retrieve the customer/user data from the database
+        $customer = Customer::where('user_id', $id)->first();
+
+        // Check if the customer/user exists
+        if ($customer) {
+            return response()->json([
+                'customer' => $customer,
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Customer not found.',
+            ], 404);
+        }
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
 }

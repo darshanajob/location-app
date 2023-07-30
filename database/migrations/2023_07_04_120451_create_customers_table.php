@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('name');
-
+            $table->Integer('phone_number');
             $table->string('address');
             $table->string('profile_photo')->nullable();
             $table->timestamps();
