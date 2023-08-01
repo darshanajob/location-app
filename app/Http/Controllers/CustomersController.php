@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\customers;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -66,7 +67,7 @@ class CustomersController extends Controller
 {
     try {
         // Retrieve all customers' data from the database
-        $customers = Customer::all();
+        $customers = customers::all();
 
         return response()->json([
             'customers' => $customers,
@@ -79,7 +80,7 @@ public function getCustomer($id)
 {
     try {
         // Retrieve the customer/user data from the database
-        $customer = Customer::where('user_id', $id)->first();
+        $customer = customers::where('user_id', $id)->first();
 
         // Check if the customer/user exists
         if ($customer) {

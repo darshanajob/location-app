@@ -17,7 +17,7 @@ class AuthController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|min:8|string|confirmed',
+                'password' => 'required|between : 8,255|confirmed',
                 'phone_number' => 'required',
                 'address' => 'required|string|max:255'
             ]);
@@ -67,7 +67,7 @@ class AuthController extends Controller
         $user->save();
 
         // Retrieve the customer data from the customers table
-        $customer = Customer::where('user_id', $id)->firstOrFail();
+        $customer = customers::where('user_id', $id)->firstOrFail();
 
         // Update the relevant fields of the customer data based on the request data
         $customer->phone_number = $request->input('phone_number');
@@ -100,7 +100,7 @@ public function deleteUser($id)
         $user->delete();
 
         // Retrieve the customer data from the database
-        $customer = Customer::where('user_id', $id)->first();
+        $customer = customers::where('user_id', $id)->first();
 
         // Delete the customer data
         $customer->delete();
@@ -112,6 +112,7 @@ public function deleteUser($id)
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
 
 
 
