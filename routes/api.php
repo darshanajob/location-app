@@ -21,12 +21,12 @@ use App\Http\Controllers\Auth\LoginController;
 //Route::post('/users', [ AuthController::class, 'Register']);
 Route::post('/users', [\App\Http\Controllers\AuthController::class, 'Register']);
 Route::get('/customers', [\App\Http\Controllers\CustomersController::class, 'getAllCustomers']);
-Route::get('/customers/{id}', 'customersController@getCustomer');
-Route::put('/users/{id}', 'AuthController@update');
-Route::delete('/users/{id}', 'AuthController@deleteUser');
+Route::get('/customers/{id}', [\App\Http\Controllers\CustomersController::class, 'getCustomer']);
+Route::put('/users', [\App\Http\Controllers\AuthController::class, 'update']);
+Route::delete('/users/{id}', [\App\Http\Controllers\AuthController::class, 'deleteUser']);
 
 // Login route
-Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 
 
